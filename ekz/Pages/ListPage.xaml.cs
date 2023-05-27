@@ -13,17 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ekz {
+namespace ekz.Pages {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Логика взаимодействия для ListPage.xaml
 	/// </summary>
-	public partial class MainWindow : Window {
-		public MainWindow() {
+	public partial class ListPage : Page {
+		public ListPage() {
 			InitializeComponent();
-		}
-
-		private void Form_Loaded(object sender, RoutedEventArgs e) {
-			MainFrame.Navigate(new Pages.StartPage());
 		}
 	}
 }
