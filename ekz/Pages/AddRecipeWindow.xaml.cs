@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -48,8 +49,15 @@ namespace ekz.Pages {
 			newMeal.MealType = mealType.Text;
 			newMeal.Kitchen = kitchen.Text;
 			newMeal.Ingredients = ingridients.Text;
-			newMeal.Descript = description.Text;
-			DataBase.addMeal(newMeal);
+			newMeal.Descript = description.Text.Replace("'", "\"\'\"");
+			try {
+				DataBase.addMeal(newMeal);
+				MessageBox.Show("Рецепт додано!");
+				this.Close();
+			}
+			catch (SqlException ex) {
+				MessageBox.Show("Database error");
+			}
 		}
 	}
 }
