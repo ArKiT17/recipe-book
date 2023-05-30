@@ -56,27 +56,23 @@ namespace ekz.Pages {
 		}
 
 		private void firstButton_Click(object sender, RoutedEventArgs e) {
-			Buffer.Meal = "Гарячі страви";
+			Buffer.MealType = "Гарячі страви";
 			NavigationService.Navigate(new ListPage());
 		}
 
 		private void secondButton_Click(object sender, RoutedEventArgs e) {
-			Buffer.Meal = "Гарніри";
+			Buffer.MealType = "Гарніри";
 			NavigationService.Navigate(new ListPage());
 		}
 
 		private void thirdButton_Click(object sender, RoutedEventArgs e) {
-			Buffer.Meal = "Закуски";
+			Buffer.MealType = "Закуски";
 			NavigationService.Navigate(new ListPage());
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e) {
-
-		}
-
 		private void Add_Click(object sender, RoutedEventArgs e) {
-			Buffer.AddNewMeal = true;
-			NavigationService.Navigate(new RecipeWindow());
+			Buffer.AddRecipeWindow.Show();
+			Buffer.AddRecipeWindow.Focus();
 		}
 	}
 }

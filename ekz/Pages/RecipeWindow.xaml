@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:ekz.Pages"
         mc:Ignorable="d"
         Title="Рецепт" Height="700" Width="500">
-    <Grid>
-        
+	<Grid Background="#fff1f0">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="80"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
     </Grid>
 </Window>

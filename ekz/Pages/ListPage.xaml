@@ -4,11 +4,35 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ekz.Pages"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
+	  Loaded="Page_Loaded"
       d:DesignHeight="700" d:DesignWidth="500"
       Title="Книга рецептів">
 
-    <Grid>
-        
-    </Grid>
+	<Grid Background="#fff1f0">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="70"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<Button Content="Назад" FontSize="16"
+				FontWeight="Medium" Foreground="White" Background="DarkOrange"
+				Padding="15 8" Height="40" Width="80"
+				HorizontalAlignment="Left" VerticalAlignment="Top"
+				Margin="10" Click="Return_Click" IsCancel="True"/>
+		<TextBlock x:Name="title" FontSize="28"
+				   HorizontalAlignment="Center" VerticalAlignment="Center"
+				   FontWeight="Medium" Foreground="DarkOrange"/>
+		<Grid Grid.Row="1">
+			<ListBox x:Name="list" ItemsSource="{Binding}" Margin="20">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel>
+							<TextBlock Text="{Binding MealName}" FontSize="20"/>
+							<TextBlock Text="{Binding Kitchen}" FontSize="20" Foreground="Orange"/>
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Grid>
+	</Grid>
 </Page>

@@ -21,5 +21,14 @@ namespace ekz.Pages {
 		public ListPage() {
 			InitializeComponent();
 		}
-	}
+
+		private void Page_Loaded(object sender, RoutedEventArgs e) {
+			title.Text = Buffer.MealType;
+			list.ItemsSource = DataBase.getMeals(Buffer.MealType);
+		}
+
+		private void Return_Click(object sender, RoutedEventArgs e) {
+			NavigationService.GoBack();
+        }
+    }
 }
