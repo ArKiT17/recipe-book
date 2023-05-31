@@ -30,5 +30,17 @@ namespace ekz.Pages {
 		private void Return_Click(object sender, RoutedEventArgs e) {
 			NavigationService.GoBack();
         }
-    }
+
+		private void Recipe_chosen(object sender, RoutedEventArgs e) {
+			if (list.SelectedItem != null) {
+				Buffer.Meal = list.SelectedItem as Meal;
+				RecipeWindow recipeWindow = new RecipeWindow();
+				recipeWindow.DataUpdated += DataUpdatedHandler;
+				recipeWindow.Show();
+			}
+        }
+		private void DataUpdatedHandler(object sender, EventArgs e) {
+			list.ItemsSource = DataBase.getMeals(Buffer.MealType);
+		}
+	}
 }

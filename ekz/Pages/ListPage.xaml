@@ -23,7 +23,7 @@
 				   HorizontalAlignment="Center" VerticalAlignment="Center"
 				   FontWeight="Medium" Foreground="DarkOrange"/>
 		<Grid Grid.Row="1">
-			<ListBox x:Name="list" ItemsSource="{Binding}" Margin="20">
+			<ListBox x:Name="list" ItemsSource="{Binding}" Margin="20" MouseDoubleClick="Recipe_chosen">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
 						<StackPanel>

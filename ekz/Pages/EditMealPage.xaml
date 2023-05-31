@@ -1,12 +1,14 @@
-﻿<Window x:Class="ekz.Pages.AddRecipeWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ekz.Pages"
-        mc:Ignorable="d"
-		Closed="Form_Closed"
-        Title="Додати рецепт" Height="700" Width="500">
+﻿<Page x:Class="ekz.Pages.EditMealPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ekz.Pages"
+      mc:Ignorable="d"
+	  Loaded="Page_Loaded"
+      d:DesignHeight="700" d:DesignWidth="500"
+      Title="EditMealPage">
+
 	<Grid Background="#fff1f0">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="80"/>
@@ -30,7 +32,7 @@
 					HorizontalAlignment="Right" VerticalAlignment="Center"
 					Margin="0 0 10 0">
 			<TextBlock Text="Тип:" FontSize="22" Margin="0 0 10 0"/>
-			<ComboBox x:Name="mealType" Width="150" SelectedIndex="0" FontSize="16">
+			<ComboBox x:Name="mealType" Width="150" SelectedIndex="0" FontSize="16" Text="{Binding MealType}">
 				<ComboBoxItem FontSize="16" Content="Гарячі страви"/>
 				<ComboBoxItem FontSize="16" Content="Гарніри"/>
 				<ComboBoxItem FontSize="16" Content="Закуски"/>
@@ -41,19 +43,23 @@
 					 Width="270" HorizontalAlignment="Left"
 					 Margin="20" FontSize="14" Text="{Binding Ingredients}"
 					 AcceptsReturn="True" TextWrapping="Wrap"/>
-			<Button x:Name="photo" Content="Вибрати фото" Height="150" Width="150"
-					HorizontalAlignment="Right"
-					Margin="0 0 30 0" Click="Add_Photo"/>
+			<StackPanel Margin="0 0 30 0" VerticalAlignment="Center">
+				<Image x:Name="photo" Height="150" Width="150"
+					   HorizontalAlignment="Right"/>
+				<Button x:Name="photoButton" Content="Змінити фото" Height="40" Width="150"
+						HorizontalAlignment="Right" FontSize="16"
+						Click="Add_Photo" Background="DarkOrange" Foreground="White"/>
+			</StackPanel>
 		</Grid>
 		<TextBlock Text="Опис:" FontSize="22" Grid.Row="3"
 					   VerticalAlignment="Center" Margin="30 0 0 0"/>
 		<TextBox x:Name="description" Grid.Row="4"
 				 Margin="20" FontSize="14" Text="{Binding Descript}"
 				 AcceptsReturn="True" TextWrapping="Wrap"/>
-		<Button Content="Додати рецепт" Grid.Row="5"
-				Height="40" Width="200"
+		<Button Content="Зберегти" Grid.Row="5"
+				Height="40" Width="120"
 				FontSize="20" FontWeight="Medium"
 				Background="DarkOrange" Foreground="White"
 				Click="Save_button"/>
 	</Grid>
-</Window>
+</Page>

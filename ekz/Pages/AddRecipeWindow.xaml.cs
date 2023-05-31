@@ -36,20 +36,14 @@ namespace ekz.Pages {
 			OpenFileDialog openFileDialog = new OpenFileDialog();
 			openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
 			if (openFileDialog.ShowDialog() == true) {
-				using (BinaryReader reader = new BinaryReader(File.Open(openFileDialog.FileName, FileMode.Open))) {
-					newMeal.Image = reader.ReadBytes((int)reader.BaseStream.Length);
-				}
+				newMeal.Img = Convert.ToBase64String(File.ReadAllBytes(openFileDialog.FileName));
 				MessageBox.Show("Фото збережено");
 				photo.Content = "Вибрати інше фото";
 			}
 		}
 
 		private void Save_button(object sender, RoutedEventArgs e) {
-			newMeal.MealName = name.Text;
 			newMeal.MealType = mealType.Text;
-			newMeal.Kitchen = kitchen.Text;
-			newMeal.Ingredients = ingridients.Text;
-			newMeal.Descript = description.Text.Replace("'", "\"\'\"");
 			try {
 				DataBase.addMeal(newMeal);
 				MessageBox.Show("Рецепт додано!");

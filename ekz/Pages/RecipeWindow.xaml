@@ -5,11 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ekz.Pages"
         mc:Ignorable="d"
+		Loaded="Window_Loaded"
         Title="Рецепт" Height="700" Width="500">
-	<Grid Background="#fff1f0">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="80"/>
-			<RowDefinition/>
-		</Grid.RowDefinitions>
-    </Grid>
+	<Grid>
+		<Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
+	</Grid>
 </Window>

@@ -10,6 +10,7 @@ namespace ekz {
 		static public string connectionString = @"Data Source = ASUS-TUF\SQLEXPRESS; Initial Catalog = Recipes; Trusted_Connection=True; Encrypt=False";
 		static public string MealType { get; set; }
 		static private AddRecipeWindow addRecipeWindow = null;
+		static public Meal Meal { get; set; }
 		static public AddRecipeWindow AddRecipeWindow {
 			get {
 				if (addRecipeWindow != null)
