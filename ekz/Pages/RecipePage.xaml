@@ -56,5 +56,13 @@
 		<TextBlock x:Name="description" Grid.Row="4"
 				 Margin="20" FontSize="14" Text="{Binding Descript}"
 				 TextWrapping="Wrap"/>
+		<StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center">
+			<Button Content="Зберегти в .docx" Width="150" Height="30"
+							FontSize="16" FontWeight="Medium" Click="Save_docx_Click"
+							Foreground="White" Background="DarkOrange" Margin="0 0 10 0"/>
+			<Button Content="Зберегти в .pdf" Width="150" Height="30"
+							FontSize="16" FontWeight="Medium" Click="Save_pdf_Click"
+							Foreground="White" Background="DarkOrange"/>
+		</StackPanel>
 	</Grid>
 </Page>
