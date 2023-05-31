@@ -17,23 +17,29 @@
 			<RowDefinition/>
 			<RowDefinition Height="60"/>
 		</Grid.RowDefinitions>
-		<StackPanel HorizontalAlignment="Right" VerticalAlignment="Top"
-					Margin="5">
-			<Button Content="Видалити" Width="100" Height="30"
-					FontSize="16" FontWeight="Medium" Click="Delete_Click"
-					Foreground="White" Background="Red" Margin="0 0 0 5"/>
-			<Button Content="Редагувати" Width="100" Height="30"
-					FontSize="16" FontWeight="Medium" Click="Edit_Click"
-					Foreground="White" Background="Orange"/>
-		</StackPanel>
-		<StackPanel VerticalAlignment="Center">
-			<TextBlock FontSize="28" MinWidth="250" Text="{Binding MealName}"
-					   HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
-					   FontWeight="Medium" Foreground="DarkOrange" Margin="0 0 0 10"/>
-			<TextBlock FontSize="16" MinWidth="100" Text="{Binding Kitchen}"
-					   HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
-					   FontWeight="Medium" Foreground="DarkOrange"/>
-		</StackPanel>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="110"/>
+			</Grid.ColumnDefinitions>
+			<StackPanel HorizontalAlignment="Right" VerticalAlignment="Top"
+						Margin="5" Grid.Column="1">
+				<Button Content="Видалити" Width="100" Height="30"
+						FontSize="16" FontWeight="Medium" Click="Delete_Click"
+						Foreground="White" Background="Red" Margin="0 0 0 5"/>
+				<Button Content="Редагувати" Width="100" Height="30"
+						FontSize="16" FontWeight="Medium" Click="Edit_Click"
+						Foreground="White" Background="Orange"/>
+			</StackPanel>
+			<StackPanel VerticalAlignment="Center" Grid.Column="0">
+				<TextBlock FontSize="28" MinWidth="250" Text="{Binding MealName}"
+						   HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+						   FontWeight="Medium" Foreground="DarkOrange" Margin="0 0 0 10"/>
+				<TextBlock FontSize="16" MinWidth="100" Text="{Binding Kitchen}"
+						   HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+						   FontWeight="Medium" Foreground="DarkOrange"/>
+			</StackPanel>
+		</Grid>
 		<TextBlock Text="Інгредієнти:" FontSize="22" Grid.Row="1"
 					   VerticalAlignment="Center" Margin="30 0 0 0"/>
 		<Grid Grid.Row="2">

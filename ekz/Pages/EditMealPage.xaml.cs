@@ -62,5 +62,10 @@ namespace ekz.Pages
 			Buffer.Meal = newEditMeal;
 			NavigationService.GoBack();
 		}
+
+		private void Return_Click(object sender, RoutedEventArgs e) {
+			if (MessageBox.Show("Ви впевнені, що хочете повернутися назад?\nВсі незбереженні дані буде втрачено!", "УВАГА!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+				NavigationService.GoBack();
+		}
 	}
 }

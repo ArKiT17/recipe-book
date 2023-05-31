@@ -11,17 +11,29 @@
 
 	<Grid Background="#fff1f0">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="70"/>
+			<RowDefinition Height="90"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<Button Content="Назад" FontSize="16"
-				FontWeight="Medium" Foreground="White" Background="DarkOrange"
-				Padding="15 8" Height="40" Width="80"
-				HorizontalAlignment="Left" VerticalAlignment="Top"
-				Margin="10" Click="Return_Click" IsCancel="True"/>
-		<TextBlock x:Name="title" FontSize="28"
-				   HorizontalAlignment="Center" VerticalAlignment="Center"
-				   FontWeight="Medium" Foreground="DarkOrange"/>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="100"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Button Content="Назад" FontSize="16"
+					FontWeight="Medium" Foreground="White" Background="DarkOrange"
+					Padding="15 8" Height="40" Width="80"
+					HorizontalAlignment="Left" VerticalAlignment="Top"
+					Margin="10" Click="Return_Click" IsCancel="True"/>
+			<StackPanel Grid.Column="1" Margin="0 0 10 0" Orientation="Horizontal"
+						VerticalAlignment="Bottom" HorizontalAlignment="Right">
+				<TextBlock Text="Пошук:" FontSize="20" FontWeight="Medium" Margin="0 0 10 0"/>
+				<TextBox x:Name="search" FontSize="20" MinWidth="200" MaxWidth="400" TextChanged="search_textChanged"/>
+			</StackPanel>
+			<TextBlock x:Name="title" FontSize="28" Grid.ColumnSpan="2"
+					   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 15 0 0"
+					   FontWeight="Medium" Foreground="DarkOrange"/>
+
+		</Grid>
 		<Grid Grid.Row="1">
 			<ListBox x:Name="list" ItemsSource="{Binding}" Margin="20" MouseDoubleClick="Recipe_chosen">
 				<ListBox.ItemTemplate>

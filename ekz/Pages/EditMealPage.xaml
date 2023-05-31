@@ -18,14 +18,25 @@
 			<RowDefinition/>
 			<RowDefinition Height="60"/>
 		</Grid.RowDefinitions>
-		<StackPanel VerticalAlignment="Center">
-			<TextBox x:Name="name" FontSize="28" MinWidth="250" Text="{Binding MealName}"
-					   HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
-					   FontWeight="Medium" Foreground="DarkOrange" Margin="0 0 0 10"/>
-			<TextBox x:Name="kitchen" FontSize="16" MinWidth="100" Text="{Binding Kitchen}"
-					   HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
-					   FontWeight="Medium" Foreground="DarkOrange"/>
-		</StackPanel>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="100"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Button Content="Назад" FontSize="16"
+				FontWeight="Medium" Foreground="White" Background="DarkOrange"
+				Padding="15 8" Height="40" Width="80" Grid.Column="0"
+				HorizontalAlignment="Left" VerticalAlignment="Top"
+				Margin="10" Click="Return_Click" IsCancel="True"/>
+			<StackPanel VerticalAlignment="Center" Grid.Column="1">
+				<TextBox x:Name="name" FontSize="28" MinWidth="250" Text="{Binding MealName}"
+						   HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+						   FontWeight="Medium" Foreground="DarkOrange" Margin="0 0 0 10"/>
+				<TextBox x:Name="kitchen" FontSize="16" MinWidth="100" Text="{Binding Kitchen}"
+						   HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+						   FontWeight="Medium" Foreground="DarkOrange"/>
+			</StackPanel>
+		</Grid>
 		<TextBlock Text="Інгредієнти:" FontSize="22" Grid.Row="1"
 					   VerticalAlignment="Center" Margin="30 0 0 0"/>
 		<StackPanel Grid.Row="1" Orientation="Horizontal"

@@ -42,5 +42,22 @@ namespace ekz.Pages {
 		private void DataUpdatedHandler(object sender, EventArgs e) {
 			list.ItemsSource = DataBase.getMeals(Buffer.MealType);
 		}
-	}
+
+		private void search_textChanged(object sender, TextChangedEventArgs e) {
+			if (search.Text == "")
+				list.ItemsSource = DataBase.getMeals(Buffer.MealType);
+			else {
+				List<Meal> tmp = DataBase.getMeals(Buffer.MealType);
+				for (int i = 0; i < tmp.Count; i++) {
+					if (tmp[i].MealName.ToLower().Contains(search.Text.ToLower()) == false &&
+						tmp[i].Kitchen.ToLower().Contains(search.Text.ToLower()) == false &&
+						tmp[i].Ingredients.ToLower().Contains(search.Text.ToLower()) == false) {
+						tmp.RemoveAt(i);
+						i--;
+					}
+				}
+				list.ItemsSource = tmp;
+			}
+		}
+    }
 }
