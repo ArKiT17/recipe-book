@@ -9,15 +9,15 @@ using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
-using Word = Microsoft.Office.Interop.Word;
 using Microsoft.Win32;
+using Word = Microsoft.Office.Interop.Word;
+using PdfSharpCore.Drawing;
+using PdfSharpCore.Pdf;
 
 namespace ekz.Pages
 {
@@ -66,12 +66,12 @@ namespace ekz.Pages
 			saveFileDialog.Filter = "Word file (*.docx)|*.docx";
 			if (saveFileDialog.ShowDialog() == true) {
 				Word.Application app = new Word.Application();
-				Document doc = app.Documents.Add(Visible: true);
+				Word.Document doc = app.Documents.Add(Visible: true);
 
 				Word.Paragraph paragraphName = doc.Content.Paragraphs.Add();
 				paragraphName.Range.Font.Size = 16;
 				paragraphName.Range.Font.Bold = 1;
-				paragraphName.Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter; // Выравнивание по центру
+				paragraphName.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter; // Выравнивание по центру
 				paragraphName.Range.Text = currentMeal.MealName;
 				paragraphName.Range.InsertParagraphAfter();
 
@@ -91,12 +91,62 @@ namespace ekz.Pages
 				doc.SaveAs2(saveFileDialog.FileName);
 				doc.Close();
 				app.Quit();
+				MessageBox.Show("Docx документ створено");
 			}
 		}
 
 		private void Save_pdf_Click(object sender, RoutedEventArgs e) {
+			SaveFileDialog saveFileDialog = new SaveFileDialog();
+			saveFileDialog.Filter = "PDF file (*.pdf)|*.pdf";
+			if (saveFileDialog.ShowDialog() == true) {
+				PdfDocument document = new PdfDocument();
 
-        }
+				PdfPage page = document.AddPage();
+
+				XGraphics graphics = XGraphics.FromPdfPage(page);
+
+				XFont fontName = new XFont("Arial", 16, XFontStyle.Bold);
+				XFont fontBold = new XFont("Arial", 12, XFontStyle.Bold);
+				XFont fontNormal = new XFont("Arial", 12);
+				graphics.DrawString(currentMeal.MealName, fontName, XBrushes.Black, new XRect(10, 10, page.Width, page.Height), XStringFormats.TopCenter);
+				graphics.DrawString(currentMeal.Kitchen, fontBold, XBrushes.Black, new XRect(10, 30, page.Width, page.Height), XStringFormats.TopCenter);
+				graphics.DrawString("Інгредієнти:", fontBold, XBrushes.Black, new XRect(20, 70, page.Width, page.Height), XStringFormats.TopLeft);
+				string newIng = currentMeal.Ingredients.Replace('\r', ' ');
+				string[] tmp = newIng.Split('\n');
+				int coordY = 90;
+				for (int i = 0; i < tmp.Count(); i++) {
+					graphics.DrawString(tmp[i], fontNormal, XBrushes.Black, new XRect(20, coordY, page.Width, page.Height), XStringFormats.TopLeft);
+					coordY += 20;
+				}
+				coordY += 20;
+				graphics.DrawString("Спосіб приготування:", fontBold, XBrushes.Black, new XRect(20, coordY, page.Width, page.Height), XStringFormats.TopLeft);
+				
+				newIng = currentMeal.Descript.Replace('\r', ' ');
+				tmp = newIng.Split('\n');
+				coordY += 20;
+				for (int i = 0; i < tmp.Count(); i++) {
+					graphics.DrawString(tmp[i], fontNormal, XBrushes.Black, new XRect(20, coordY, page.Width, page.Height), XStringFormats.TopLeft);
+					coordY += 20;
+				}
+				coordY += 20;
+
+				if (currentMeal.Img != null && currentMeal.Img != "") {
+					BitmapEncoder encoder = new JpegBitmapEncoder();
+					encoder.Frames.Add(BitmapFrame.Create((BitmapSource)photo.Source));
+					using (FileStream stream = new FileStream("tmp.jpeg", FileMode.Create)) {
+						encoder.Save(stream);
+					}
+
+					XImage image = XImage.FromFile("tmp.jpeg");
+					File.Delete("tmp.jpeg");
+					graphics.DrawImage(image, page.Width / 2 + 30, 70, 250, 200);
+				}
+
+				document.Save(saveFileDialog.FileName);
+				document.Close();
+				MessageBox.Show("PDF документ створено");
+			}
+		}
 
 	}
 }
